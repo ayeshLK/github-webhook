@@ -1,0 +1,16 @@
+[gitHubWebhook.config]
+# The port that is used to start the hub
+WEBHOOK_PORT = 9090
+
+HUB_URL = "https://github"
+
+CALLBACK_URL = "https://"
+
+SECRET = "test123#"
+
+APPEND_SERVICE_PATH = false
+
+# Gsheet Config
+AUTH_URL = "https://auth"
+
+GSHEET_API = "https://sheets.google.com"
