@@ -1,14 +1,18 @@
 [gitHubWebhook.config]
-# The port that is used to start the hub
+# The port that is used to start the webhook
 WEBHOOK_PORT = 9090
 
-HUB_URL = "https://github"
+# GitHub Webhook Service URL
+GITHUB_URL = "https://api.github.com/hub"
 
+# GitHub Webhook Topic
+TOPIC_URL = "https://github.com/{owner}/{repo}/events/*.json"
+
+# Public URL for the Subscriber Service
 CALLBACK_URL = "https://"
 
+# Secret Key to be used to authenticate content
 SECRET = "test123#"
-
-APPEND_SERVICE_PATH = false
 
 # Gsheet Config
 AUTH_URL = "https://auth"

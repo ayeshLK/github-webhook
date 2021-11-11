@@ -5,10 +5,9 @@ public function main() returns error? {
     websub:Listener webhookListener = check new(config:WEBHOOK_PORT);
     // Configure webhook service
     websub:SubscriberServiceConfiguration config = {
-        target: config:HUB_URL,
+        target: [config:GITHUB_URL, config:TOPIC_URL],
         callback: config:CALLBACK_URL,
-        secret: config:SECRET,
-        appendServicePath: config:APPEND_SERVICE_PATH
+        secret: config:SECRET
     };
     websub:SubscriberService webhookService = check new WebhookService();
     check webhookListener.attachWithConfig(webhookService, config, "/webhook");
