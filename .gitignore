@@ -1,1 +1,4 @@
 target
+
+# untrack config file since it contains sensitive information
+Config.toml
