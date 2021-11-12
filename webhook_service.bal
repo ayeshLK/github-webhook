@@ -1,18 +1,20 @@
-import gitHubWebhook.connections as conn;
+import gitHubWebhook.config;
+import ballerina/websub;
 import ballerina/mime;
 import ballerina/log;
 import ballerina/lang.value;
-import ballerina/websub;
 
-isolated service class WebhookService {
-    *websub:SubscriberService;
-    
-    private final conn:GSheetClient clientEp;
-
-    public isolated function init() returns error? {
-        self.clientEp = check new();    
+@websub:SubscriberServiceConfig {
+    target: [config:GITHUB_URL, config:TOPIC_URL],
+    callback: config:CALLBACK_URL,
+    secret: config:GITHUB_SECRET,
+    httpConfig: {
+        auth: {
+            token: config:GITHUB_AUTH_TOKEN
+        }
     }
-
+}
+service /webhook on new websub:Listener(config:WEBHOOK_PORT) {
     remote isolated function onEventNotification(websub:ContentDistributionMessage event) returns websub:Acknowledgement|error? {
         match event.contentType {
             mime:APPLICATION_JSON => {
