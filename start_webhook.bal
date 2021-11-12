@@ -7,7 +7,12 @@ public function main() returns error? {
     websub:SubscriberServiceConfiguration config = {
         target: [config:GITHUB_URL, config:TOPIC_URL],
         callback: config:CALLBACK_URL,
-        secret: config:SECRET
+        secret: config:GITHUB_SECRET,
+        httpConfig: {
+            auth: {
+                token: config:GITHUB_AUTH_TOKEN
+            }
+        }
     };
     websub:SubscriberService webhookService = check new WebhookService();
     check webhookListener.attachWithConfig(webhookService, config, "/webhook");

@@ -8,13 +8,20 @@ GITHUB_URL = "https://api.github.com/hub"
 # GitHub Webhook Topic
 TOPIC_URL = "https://github.com/{owner}/{repo}/events/*.json"
 
+# GitHub authentication token to be used in the subscriber-service
+GITHUB_AUTH_TOKEN = "test123#"
+
 # Public URL for the Subscriber Service
 CALLBACK_URL = "https://"
 
 # Secret Key to be used to authenticate content
-SECRET = "test123#"
+GITHUB_SECRET = "test123#"
 
-# Gsheet Config
-AUTH_URL = "https://auth"
+# Google sheets client-Id
+CLIENT_ID = "client-1"
 
-GSHEET_API = "https://sheets.google.com"
+# Google sheets client-secret
+CLIENT_SECRET = "secret-1"
+
+# Google sheets refresh-token
+REFRESH_TOKEN = "r-token-1"
