@@ -4,6 +4,8 @@ import ballerina/mime;
 import ballerina/log;
 import ballerina/lang.value;
 
+listener websub:Listener webhookListener = new(config:WEBHOOK_PORT);
+
 @websub:SubscriberServiceConfig {
     target: [config:GITHUB_URL, config:TOPIC_URL],
     callback: config:CALLBACK_URL,
@@ -14,7 +16,7 @@ import ballerina/lang.value;
         }
     }
 }
-service /webhook on new websub:Listener(config:WEBHOOK_PORT) {
+service /webhook on webhookListener {
     remote isolated function onEventNotification(websub:ContentDistributionMessage event) returns websub:Acknowledgement|error? {
         match event.contentType {
             mime:APPLICATION_JSON => {
